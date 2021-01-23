@@ -1,0 +1,46 @@
+#!/bin/sh
+
+BIN_DIR="$(
+  cd "$(dirname "$0")" || exit
+  pwd -P
+)"
+REPO_DIR="$(cd "$BIN_DIR/.." && pwd -P)"
+IDF_DIR="$REPO_DIR/esp-idf"
+TOOLCHAIN_DIR="$REPO_DIR/.espressif"
+
+export IDF_TOOLS_PATH=$TOOLCHAIN_DIR
+export IDF_PATH=$IDF_DIR
+
+cd "$REPO_DIR" || exit
+
+echo ""
+echo "Installing Repository Submodules"
+git submodule update --init --recursive
+
+cd "$IDF_DIR" || exit
+echo "Running ESP-IDF Install Script"
+"$IDF_DIR/install.sh"
+
+cd "$REPO_DIR" || exit
+"$REPO_DIR/set_paths.sh"
+
+echo ""
+echo "Finished Install"
+echo "From now on, run the following script to setup your environment:"
+echo ""
+echo "  . bin/set_paths"
+echo ""
+echo "Done"
+
+echo "Remove Old Configs"
+if test -f "$REPO_DIR/sdkconfig"; then
+  rm "$REPO_DIR/sdkconfig"
+fi
+if test -f "$REPO_DIR/sdkconfig.old"; then
+  rm "$REPO_DIR/sdkconfig.old"
+fi
+if test -d "$REPO_DIR/build"; then
+  rm -rf "$REPO_DIR/build"
+fi
+
+cd "$REPO_DIR" || exit
