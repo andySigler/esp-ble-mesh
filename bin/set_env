@@ -1,0 +1,19 @@
+#!/bin/sh
+
+BIN_DIR="$(
+  cd "$(dirname "$0")" || exit
+  pwd -P
+)"
+REPO_DIR="$(cd "$BIN_DIR/.." && pwd -P)"
+IDF_DIR="$REPO_DIR/esp-idf"
+TOOLCHAIN_DIR="$REPO_DIR/.espressif"
+
+export IDF_TOOLS_PATH=$TOOLCHAIN_DIR
+export IDF_PATH=$IDF_DIR
+
+export GCC_COLORS="error=01;31:warning=01;33:note=01;36:caret=01;32:locus=01:quote=01"
+
+echo "Setup bash profile"
+. "$IDF_DIR/export.sh"
+
+echo "Environment set for ESP-IDF"

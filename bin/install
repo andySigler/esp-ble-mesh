@@ -28,7 +28,7 @@ echo ""
 echo "Finished Install"
 echo "From now on, run the following script to setup your environment:"
 echo ""
-echo "  . bin/set_paths"
+echo "  . bin/set_env"
 echo ""
 echo "Done"
 

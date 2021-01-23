@@ -1,0 +1,17 @@
+# Name,   Type, SubType, Offset,  Size, Flags
+
+# "nvs": custom storage used by app (and other parts of IDF)
+nvs,      data, nvs,     0x9000,  0x4000
+
+# "otadata": store data about current OTA partition. keep at 0x2000
+otadata,  data, ota,     0xd000,  0x2000
+
+# "phy_init": not used
+phy_init, data, phy,     0xf000,  0x1000
+
+# "ota_N": app partitions holding the current app and previous version
+#          includes data saved to flash
+#          app partitions have to be at offsets aligned to 0x10000
+ota_0,    app,  ota_0,   0x10000, 0x1E0000
+ota_1,    app,  ota_1,   0x1F0000,0x1E0000
+#                        total size = 0x3D0000 (3997696 Bytes)

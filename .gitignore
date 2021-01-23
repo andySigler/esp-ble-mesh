@@ -1,0 +1,13 @@
+.DS_Store
+
+# CLion
+.idea
+
+# CMake build stuff
+cmake-build-debug
+
+# esp-idf
+*/build/
+*/sdkconfig
+*/sdkconfig.old
+.espressif
