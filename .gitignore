@@ -7,7 +7,7 @@
 cmake-build-debug
 
 # esp-idf
-*/build/
-*/sdkconfig
-*/sdkconfig.old
+*build/
+*sdkconfig
+*sdkconfig.old
 .espressif
